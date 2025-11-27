@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { NextRequest, NextResponse } from 'next/server';
 
-const SHEET_ID = process.env.SHEET_ID || '1D8-eI0nS4o4u6972pi1Ai9yApkPZeaVC86WoOgdbyLA';
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbx-RDOwLjxo7z0EkY4KIRDdKIlY-17ZIun0D4zMwU0fDGYh_BZ1yznlnBQh0aZ6e-r5-w/exec';
+const SHEET_ID = process.env.SHEET_ID || '1-EVegTUrlLQtBpCOWUghCvYgKoyjKaGAQ87iRKkCP2I';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyGEXfnH70rQMgDbl-pZRSP5KQHGG9_5bxRXUtzPdIsZeIbBOmzTd_vnHs8EtpyJBUxSw/exec';
 
 export async function POST(req: NextRequest) {
     try {
