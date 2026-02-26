@@ -86,7 +86,9 @@ export const proxy = async (req: NextRequest) => {
     const ip = req.headers.get('x-nf-client-connection-ip') || req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 'unknown';
 
     if (!ua || BLOCKED_UA_REGEX.test(ua)) {
-        console.log(`bị chặn UA, kết quả ${BLOCKED_UA_REGEX.test(ua)} ${ua}`)
+        if(ua){
+            console.log(`bị chặn UA, kết quả ${BLOCKED_UA_REGEX.test(ua)} ${ua}`)
+        }
         return new NextResponse(null, { status: 404 });
     }
 
