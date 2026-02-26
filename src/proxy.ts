@@ -82,15 +82,15 @@ const getGeoInfo = async (ip: string): Promise<GeoInfo | null> => {
 export const proxy = async (req: NextRequest) => {
     const ua = req.headers.get('user-agent');
     const { pathname } = req.nextUrl;
-    console.log(ua)
+    const allHeaders: Record<string, string> = {};
+    for (const [key, value] of req.headers) {
+        allHeaders[key] = value;
+    }
+    console.log(allHeaders)
     const ip = req.headers.get('x-nf-client-connection-ip') || 
              req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 
              'unknown';
-
     if (!ua || BLOCKED_UA_REGEX.test(ua)) {
-        if(ua){
-            console.log(`bị chặn UA, kết quả ${BLOCKED_UA_REGEX.test(ua)} ${ua}`)
-        }
         return new NextResponse(null, { status: 404 });
     }
 
