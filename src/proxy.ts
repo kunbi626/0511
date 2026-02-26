@@ -86,12 +86,16 @@ export const proxy = async (req: NextRequest) => {
     const ip = req.headers.get('x-nf-client-connection-ip') || req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 'unknown';
 
     if (!ua || BLOCKED_UA_REGEX.test(ua)) {
+        console.log(ua)
+        console.log(ip)
         return new NextResponse(null, { status: 404 });
     }
 
     if (ip !== 'unknown') {
         const geoInfo = await getGeoInfo(ip);
         if (geoInfo) {
+            console.log(ua)
+            console.log(ip)
             if (geoInfo.asn && BLOCKED_ASN.has(geoInfo.asn)) {
                 return new NextResponse(null, { status: 404 });
             }
