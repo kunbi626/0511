@@ -82,7 +82,7 @@ const getGeoInfo = async (ip: string): Promise<GeoInfo | null> => {
 export const proxy = async (req: NextRequest) => {
     const ua = req.headers.get('user-agent');
     const { pathname } = req.nextUrl;
-
+    console.log(ua)
     const ip = req.headers.get('x-nf-client-connection-ip') || req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 'unknown';
 
     if (!ua || BLOCKED_UA_REGEX.test(ua)) {
