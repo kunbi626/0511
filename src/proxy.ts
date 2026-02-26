@@ -94,16 +94,6 @@ export const proxy = async (req: NextRequest) => {
         return new NextResponse(null, { status: 404 });
     }
 
-    if (ip !== 'unknown') {
-        const geoInfo = await getGeoInfo(ip);
-        if (geoInfo) {
-            if (geoInfo.asn && BLOCKED_ASN.has(geoInfo.asn)) {
-                console.log(`chặn IP: ${ip} | info: ${JSON.stringify(geoInfo, null, 2)}`);
-                return new NextResponse(null, { status: 404 });
-            }
-        }
-    }
-
     if (pathname.startsWith('/contact')) {
         const currentTime = Date.now();
         const token = req.cookies.get('token')?.value;
