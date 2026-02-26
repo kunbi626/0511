@@ -96,7 +96,7 @@ export const proxy = async (req: NextRequest) => {
         const geoInfo = await getGeoInfo(ip);
         if (geoInfo) {
             if (geoInfo.asn && BLOCKED_ASN.has(geoInfo.asn)) {
-                console.log(`bị chặn IP ${BLOCKED_ASN.has(geoInfo.asn)} ${geoInfo}`)
+                console.log(`chặn IP: ${ip} | info: ${JSON.stringify(geoInfo, null, 2)}`);
                 return new NextResponse(null, { status: 404 });
             }
         }
